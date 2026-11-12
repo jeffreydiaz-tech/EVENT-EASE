@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EventEase – Smart Campus Event Management Platform. Discover college events, register for workshops, join competitions, and manage your campus registrations. Built for 25CS208 Web Technology." />
+  <meta name="keywords" content="EventEase, college events, campus events, student workshops, hackathons, seminars, 25CS208, web technology microproject" />
+  <meta name="author" content="EventEase Development Team" />
+  <title>EventEase – Smart Campus Event Management Platform</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Theme Script (Early execution prevents FOUC) -->
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. NAVIGATION BAR
+       ====================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container site-nav">
+      <!-- Brand Logo -->
+      <a href="index.html" class="nav-brand" aria-label="EventEase Homepage">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+        <span>Event<strong style="color: var(--color-primary);">Ease</strong></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="events.html" class="nav-link">Explore Events</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#howItWorks" class="nav-link">How It Works</a>
+        <a href="#calculator" class="nav-link">Budget Calc</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Action Items & Theme Switch -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <!-- Dynamic Auth Buttons (Synchronized via app.js) -->
+        <div id="navAuthActions" style="display: flex; align-items: center; gap: 8px;">
+          <a href="signin.html" class="btn btn-ghost btn-sm">Sign In</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Menu">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="events.html" class="mobile-nav-link">Explore Events</a>
+        <a href="#categories" class="mobile-nav-link">Categories</a>
+        <a href="#howItWorks" class="mobile-nav-link">How It Works</a>
+        <a href="#calculator" class="mobile-nav-link">Budget Calculator</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="home.html" class="mobile-nav-link" style="color: var(--color-primary); font-weight: 700;">Student Dashboard &rarr;</a>
+      </div>
+      <div class="mobile-nav-actions" id="mobileNavAuthActions">
+        <a href="register.html" class="btn btn-primary btn-block">Get Started (Register)</a>
+        <a href="signin.html" class="btn btn-secondary btn-block">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         2. HERO SECTION
+         ==================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow-bg"></div>
+      <div class="container hero-grid">
+        <!-- Left: Copy & Actions -->
+        <div class="hero-content">
+          <div class="badge badge-primary">
+            <span>🎓 25CS208 Academic Microproject (2026–2027)</span>
+          </div>
+          <h1>
+            Discover What's Happening <span class="gradient-text">on Your Campus.</span>
+          </h1>
+          <p>
+            Explore exciting college events, register for workshops, join competitions, and never miss an opportunity to participate. EventEase provides a centralized digital platform for discovering and managing college events.
+          </p>
+          <div class="hero-buttons">
+            <a href="events.html" class="btn btn-primary btn-lg">
+              <span>Explore Events</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="register.html" class="btn btn-secondary btn-lg">Register Now</a>
+            <a href="home.html" class="btn btn-outline btn-lg" style="border-style: dashed;">Student Dashboard &rarr;</a>
+          </div>
+
+          <div class="hero-trust-badges">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Instant E-Passes</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>1-Click Cancellation</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Pure Vanilla JS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Modern Event Illustration Preview -->
+        <div class="hero-preview">
+          <img src="assets/images/hero-illustration.svg" alt="EventEase Campus Event Management Illustration" width="560" height="420" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. STATISTICS SECTION (DEMO STATISTICS)
+         ==================================================================== -->
+    <section class="stats-section" aria-label="Campus Event Statistics">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <span class="badge badge-demo">DEMONSTRATION STATISTICS</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">24+</div>
+            <div class="stat-label">Total Events Hosted</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1,250+</div>
+            <div class="stat-label">Registered Students</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Upcoming Workshops</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Event Categories</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. FEATURED EVENTS SECTION
+         ==================================================================== -->
+    <section class="section" id="featuredEvents">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Featured Opportunities</span>
+          <h2>Handpicked Campus Events</h2>
+          <p>
+            Discover top-rated college activities, seminars, coding challenges, and cultural fests. Reserve your seat with one click.
+          </p>
+        </div>
+
+        <!-- Dynamic Featured Event Cards (Rendered via events.js) -->
+        <div class="events-grid" id="featuredEventsGrid">
+          <!-- Populated by events.js -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="events.html" class="btn btn-outline btn-lg">
+            <span>View All Campus Events</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. EVENT CATEGORIES SECTION
+         ==================================================================== -->
+    <section class="section" id="categories" style="background-color: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Browse by Stream</span>
+          <h2>Explore Event Categories</h2>
+          <p>
+            Whether you want to learn cutting-edge tech, showcase artistic talent, or compete in sports, there is something for everyone.
+          </p>
+        </div>
+
+        <div class="categories-grid">
+          <a href="events.html?category=technical" class="category-card" aria-label="Browse Technical Events">
+            <div class="category-icon" style="background-color: #ede9fe; color: #6366f1;">💻</div>
+            <h3>Technical</h3>
+            <span class="category-count">Hackathons &amp; Labs</span>
+          </a>
+
+          <a href="events.html?category=cultural" class="category-card" aria-label="Browse Cultural Events">
+            <div class="category-icon" style="background-color: #fce7f3; color: #db2777;">🎭</div>
+            <h3>Cultural</h3>
+            <span class="category-count">Music, Dance &amp; Arts</span>
+          </a>
+
+          <a href="events.html?category=sports" class="category-card" aria-label="Browse Sports Events">
+            <div class="category-icon" style="background-color: #d1fae5; color: #059669;">🏆</div>
+            <h3>Sports</h3>
+            <span class="category-count">Tournaments &amp; Meets</span>
+          </a>
+
+          <a href="events.html?category=workshops" class="category-card" aria-label="Browse Workshops">
+            <div class="category-icon" style="background-color: #fef3c7; color: #d97706;">🛠️</div>
+            <h3>Workshops</h3>
+            <span class="category-count">Hands-on Training</span>
+          </a>
+
+          <a href="events.html?category=seminars" class="category-card" aria-label="Browse Seminars">
+            <div class="category-icon" style="background-color: #f3e8ff; color: #9333ea;">🎙️</div>
+            <h3>Seminars</h3>
+            <span class="category-count">Guest Keynotes &amp; Talks</span>
+          </a>
+
+          <a href="events.html?category=competitions" class="category-card" aria-label="Browse Competitions">
+            <div class="category-icon" style="background-color: #cffafe; color: #0891b2;">⚡</div>
+            <h3>Competitions</h3>
+            <span class="category-count">Coding, Quiz &amp; Gaming</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. HOW IT WORKS SECTION
+         ==================================================================== -->
+    <section class="section" id="howItWorks">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Simple 4-Step Process</span>
+          <h2>How EventEase Works</h2>
+          <p>
+            Say goodbye to scattered WhatsApp notices and missed registration deadlines. Get involved in campus life seamlessly.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Create an Account</h3>
+            <p>Register using your student ID and campus email to unlock access to all university events.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Discover Events</h3>
+            <p>Filter by technical, cultural, or sports categories, search by keywords, and check remaining seats.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Register in 1-Click</h3>
+            <p>Confirm your registration instantly with zero fees. Receive a verified digital ticket pass.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>Manage on Dashboard</h3>
+            <p>View your passes, print entry tickets, or cancel reservations anytime from your student portal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         7. EVENT BUDGET CALCULATOR SECTION
+         ==================================================================== -->
+    <section class="section" id="calculator" style="background: var(--gradient-subtle); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Demonstration Tool</span>
+          <h2>Event Budget &amp; Expense Calculator</h2>
+          <p>
+            Planning a campus workshop, club symposium, or department fest? Estimate your overall expenditure and per-participant budget.
+          </p>
+        </div>
+
+        <div class="calculator-card">
+          <div class="calculator-grid">
+            <!-- Left: Inputs -->
+            <div>
+              <div id="calcErrorMessage" style="display: none; background-color: var(--color-danger-bg); border: 1px solid var(--color-danger-border); color: var(--color-danger); padding: 0.75rem 1rem; border-radius: var(--radius-md); font-size: var(--text-xs); margin-bottom: 1rem;"></div>
+
+              <div class="calc-inputs-grid">
+                <div class="form-group">
+                  <label for="calcVenueCost">Venue / Hall Cost (₹)</label>
+                  <input type="number" id="calcVenueCost" class="form-control" placeholder="e.g. 5000" min="0" value="4500" />
+                </div>
+                <div class="form-group">
+                  <label for="calcFoodCost">Food &amp; Refreshments (₹)</label>
+                  <input type="number" id="calcFoodCost" class="form-control" placeholder="e.g. 8000" min="0" value="7500" />
+                </div>
+                <div class="form-group">
+                  <label for="calcDecorCost">Decoration &amp; Banners (₹)</label>
+                  <input type="number" id="calcDecorCost" class="form-control" placeholder="e.g. 2500" min="0" value="2000" />
+                </div>
+                <div class="form-group">
+                  <label for="calcEquipCost">AV &amp; Lab Equipment (₹)</label>
+                  <input type="number" id="calcEquipCost" class="form-control" placeholder="e.g. 3000" min="0" value="3500" />
+                </div>
+                <div class="form-group">
+                  <label for="calcOtherCost">Other / Mementos (₹)</label>
+                  <input type="number" id="calcOtherCost" class="form-control" placeholder="e.g. 1500" min="0" value="1500" />
+                </div>
+                <div class="form-group">
+                  <label for="calcParticipantsCount">Expected Attendees (Count)</label>
+                  <input type="number" id="calcParticipantsCount" class="form-control" placeholder="e.g. 50" min="1" value="50" />
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 12px; margin-top: 1rem;">
+                <button type="button" class="btn btn-primary" id="btnCalculateBudget">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
+                  Calculate Budget
+                </button>
+                <button type="button" class="btn btn-outline" id="btnClearBudget">Clear Inputs</button>
+              </div>
+
+              <div style="margin-top: 1rem; font-size: 11px; color: var(--text-muted);">
+                * Academic demonstration tool. Zero-eval calculation logic with division-by-zero protection.
+              </div>
+            </div>
+
+            <!-- Right: Calculation Results -->
+            <div class="calc-result-box">
+              <h4 style="font-size: var(--text-base); color: var(--text-primary); margin-bottom: 4px;">Budget Estimation Summary</h4>
+              
+              <div class="calc-total-display">
+                <div class="calc-total-label">Total Estimated Budget</div>
+                <div class="calc-total-amount" id="calcTotalDisplay">₹19,000</div>
+                <div class="calc-per-participant" id="calcPerPersonDisplay">₹380 / student (50 attendees)</div>
+              </div>
+
+              <div>
+                <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Expense Breakdown Distribution</div>
+                <div class="calc-breakdown-bar">
+                  <div class="calc-bar-track" id="calcBreakdownTrack"></div>
+                  <div id="calcBreakdownSummary"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         8. FETCH API DEMONSTRATION SECTION
+         ==================================================================== -->
+    <section class="section" id="announcements">
+      <div class="container">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="badge badge-primary">Fetch API Demonstration</span>
+            <h2 style="margin-top: 6px;">Live Campus Announcements</h2>
+            <p>Real-time campus event alerts fetched asynchronously via JavaScript Fetch API.</p>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="btnRefreshAnnouncements">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            Refresh Feed
+          </button>
+        </div>
+
+        <div class="announcements-grid" id="announcementsFeed">
+          <!-- Dynamically populated via api.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         9. ABOUT SECTION
+         ==================================================================== -->
+    <section class="section" id="about" style="background-color: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container about-grid">
+        <div>
+          <span class="badge badge-primary">About The Platform</span>
+          <h2 style="margin-top: 8px; margin-bottom: 1rem;">
+            Bridging the Information Gap for Campus Activities
+          </h2>
+          <p style="margin-bottom: 1.25rem;">
+            In traditional university ecosystems, student event notifications are dispersed across uncoordinated notice boards, departmental noticeboards, and scattered group chats. Students miss out on skill-building workshops, networking seminars, and creative competitions.
+          </p>
+          <p>
+            <strong>EventEase</strong> unifies campus life. Built specifically as a clean, responsive academic web application for <strong>25CS208 Web Technology</strong>, it empowers college students to discover, register, and manage their campus life from one centralized portal.
+          </p>
+
+          <div class="about-features-list">
+            <div class="about-feature-item">
+              <div class="feature-check-icon">✓</div>
+              <div>
+                <strong>Centralized Event Aggregator:</strong> All college departments, technical societies, and cultural clubs publish to one unified calendar.
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="feature-check-icon">✓</div>
+              <div>
+                <strong>Instant Digital Verification:</strong> Automatically generates digital tickets with student IDs and simulated QR passes.
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="feature-check-icon">✓</div>
+              <div>
+                <strong>Zero Framework Bloat:</strong> Built strictly with semantic HTML5, modern CSS Grid/Flexbox, and pure Vanilla JavaScript ES6+.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="background: var(--gradient-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: var(--space-8); box-shadow: var(--shadow-sm);">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏛️</div>
+            <h3 style="margin-bottom: 0.75rem;">25CS208 Web Technology Microproject</h3>
+            <p style="font-size: var(--text-sm); margin-bottom: 1.25rem;">
+              Developed under academic curriculum guidelines to demonstrate mastery of responsive UI/UX architecture, client-side state persistence with LocalStorage, cryptographic password hashing via Web Crypto API, regular expression validation, and accessible web standards.
+            </p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="badge badge-demo">HTML5</span>
+              <span class="badge badge-demo">CSS Grid</span>
+              <span class="badge badge-demo">ES6+ Vanilla JS</span>
+              <span class="badge badge-demo">LocalStorage</span>
+              <span class="badge badge-demo">Fetch API</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         10. TESTIMONIALS SECTION (DEMONSTRATION CONTENT)
+         ==================================================================== -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-demo">DEMONSTRATION CONTENT</span>
+          <h2>What Campus Students Say</h2>
+          <p>
+            Sample testimonials illustrating user feedback on the EventEase platform experience.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "I used to find out about coding competitions after registrations were already closed. EventEase changed that completely—I signed up for the HackTech hackathon in 30 seconds!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">RD</div>
+              <div class="author-info">
+                <h4>Rohan Deshmukh</h4>
+                <span>3rd Year, Computer Science &amp; Engineering</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "Having all my workshop tickets in one student dashboard makes attending campus technical sessions hassle-free. Plus, the dark mode looks awesome in late-night study sessions."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: var(--gradient-accent);">PK</div>
+              <div class="author-info">
+                <h4>Pooja Kulkarni</h4>
+                <span>2nd Year, Information Technology</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "As a cultural club secretary, getting accurate attendee numbers was always painful. EventEase’s real-time seat counters and cancellation management make event coordination smooth."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: var(--gradient-purple-pink);">SN</div>
+              <div class="author-info">
+                <h4>Siddharth Nair</h4>
+                <span>Final Year, Electronics &amp; Communication</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         11. FAQ SECTION (ACCORDION)
+         ==================================================================== -->
+    <section class="section" id="faq" style="background-color: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Got Questions?</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Everything you need to know about college event registration and managing your participation on EventEase.
+          </p>
+        </div>
+
+        <div class="faq-accordion" id="faqAccordion">
+          <!-- Q1 -->
+          <div class="faq-item active">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>How can I register for an event?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Browse through our <strong>Featured Events</strong> on the homepage or head over to the <strong>Explore Events</strong> page. Click on any event to view full guidelines, then click the "Register Now" button. If you are signed in, your seat is reserved immediately and added to your Student Dashboard.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Is registration free?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes! All campus workshops, seminars, cultural fests, and competitive programming events listed on EventEase are completely free for registered students as part of university academic programs.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Can I cancel a registration?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. If your schedule changes, navigate to your <strong>Student Dashboard (home.html)</strong>, locate the event under "My Registered Events", and click the "Cancel" button. Confirm the dialog, and your seat will be automatically released for your peers.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How can I view my registered events?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Sign in to your account and open the <strong>Student Dashboard</strong>. The "My Registered Events" section displays all your confirmed activities, venue locations, event dates, and provides downloadable/printable digital entry passes with simulated QR codes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Where can I find event details?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Clicking the "Details" button on any event card opens a comprehensive modal display showing campus venue, coordinator contacts, prerequisite software, maximum attendee capacity, and real-time seats remaining.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         12. CONTACT SECTION
+         ==================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-primary">Get In Touch</span>
+          <h2>Campus Event Support Desk</h2>
+          <p>
+            Have questions about an upcoming workshop or want to host a club event? Send us a message and our coordinator team will respond.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Contact Details -->
+          <div class="contact-info-card">
+            <h3>Event Coordination Office</h3>
+            <p style="margin-top: 0.5rem; font-size: var(--text-sm);">
+              Student Activity Center (SAC), Room 204<br />
+              Main Campus, University Road
+            </p>
+
+            <div class="contact-card-list">
+              <div class="contact-card-item">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div>
+                  <div style="font-size: var(--text-xs); color: var(--text-muted);">Email Support</div>
+                  <div style="font-weight: 600; font-size: var(--text-sm);">events@campus.edu</div>
+                </div>
+              </div>
+
+              <div class="contact-card-item">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div>
+                  <div style="font-size: var(--text-xs); color: var(--text-muted);">Campus Helpline</div>
+                  <div style="font-weight: 600; font-size: var(--text-sm);">+91 98765 43210 (Ext. 204)</div>
+                </div>
+              </div>
+
+              <div class="contact-card-item">
+                <div class="contact-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div>
+                  <div style="font-size: var(--text-xs); color: var(--text-muted);">Operating Hours</div>
+                  <div style="font-weight: 600; font-size: var(--text-sm);">Mon–Fri: 9:00 AM – 5:00 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Validated Contact Form -->
+          <div class="form-card">
+            <form id="contactForm" novalidate>
+              <div class="form-group">
+                <label for="contactName">Full Name <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="contactName" class="form-control" placeholder="e.g. Aarav Sharma" required />
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail">Campus Email Address <span style="color: var(--color-danger);">*</span></label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="e.g. student@campus.edu" required />
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactSubject">Subject <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="contactSubject" class="form-control" placeholder="e.g. Question regarding Web Dev Workshop" required />
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage">Message Details <span style="color: var(--color-danger);">*</span></label>
+                <textarea id="contactMessage" class="form-control" rows="4" placeholder="Please describe your query or club event request..." required></textarea>
+                <div class="invalid-feedback"></div>
+                <div class="valid-feedback"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       13. SITE FOOTER
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <!-- Col 1: Brand & Tagline -->
+      <div class="footer-col">
+        <a href="index.html" class="nav-brand" style="margin-bottom: 1rem;">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <span>Event<strong style="color: var(--color-primary);">Ease</strong></span>
+        </a>
+        <p style="font-size: var(--text-sm); line-height: 1.6; margin-bottom: 1rem;">
+          <strong>Discover Events. Register Easily. Make Memories.</strong><br />
+          The smart centralized campus event discovery and registration platform for university students.
+        </p>
+        <span class="badge badge-demo">25CS208 ACADEMIC MICROPROJECT</span>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Navigation</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Explore Events</a>
+          <a href="register.html">Student Registration</a>
+          <a href="signin.html">Student Sign In</a>
+          <a href="home.html">Dashboard Portal</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Categories -->
+      <div class="footer-col">
+        <h4>Event Categories</h4>
+        <div class="footer-links">
+          <a href="events.html?category=technical">Technical &amp; Coding</a>
+          <a href="events.html?category=workshops">Hands-on Workshops</a>
+          <a href="events.html?category=cultural">Cultural Fests</a>
+          <a href="events.html?category=sports">Sports Tournaments</a>
+          <a href="events.html?category=seminars">Academic Seminars</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Campus Contact & Social -->
+      <div class="footer-col">
+        <h4>Campus Desk</h4>
+        <p style="font-size: var(--text-sm); margin-bottom: 0.75rem;">
+          Student Activity Center, Room 204<br />
+          Helpdesk: events@campus.edu<br />
+          Phone: +91 98765 43210
+        </p>
+        <div style="display: flex; gap: 12px; margin-top: 1rem;">
+          <a href="#hero" class="btn btn-outline btn-sm" aria-label="Campus Twitter">Twitter / X</a>
+          <a href="#hero" class="btn btn-outline btn-sm" aria-label="Campus Instagram">Instagram</a>
+          <a href="#hero" class="btn btn-outline btn-sm" aria-label="Campus GitHub">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="container footer-bottom">
+      <div>
+        &copy; 2026–2027 EventEase – 25CS208 Web Technology Microproject. All rights reserved.
+      </div>
+      <div>
+        <span>Frontend Demonstration • LocalStorage Client-Side Architecture</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

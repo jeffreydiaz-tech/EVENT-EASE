@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EventEase Student Dashboard – Manage your registered campus events, access digital tickets, and discover upcoming activities." />
+  <title>Student Dashboard – EventEase</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <!-- Modular Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Theme Script -->
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. NAVIGATION BAR
+       ====================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container site-nav">
+      <a href="index.html" class="nav-brand" aria-label="EventEase Homepage">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+        <span>Event<strong style="color: var(--color-primary);">Ease</strong></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Explore Events</a>
+        <a href="home.html" class="nav-link active">My Dashboard</a>
+        <a href="index.html#categories" class="nav-link">Categories</a>
+        <a href="index.html#calculator" class="nav-link">Budget Calc</a>
+        <a href="index.html#contact" class="nav-link">Help Desk</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <a href="events.html" class="btn btn-outline btn-sm">
+          <span>+ Explore Events</span>
+        </a>
+
+        <button type="button" class="btn btn-ghost btn-sm" id="dashLogoutBtn" style="color: var(--color-danger);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Sign Out</span>
+        </button>
+
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Menu">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="events.html" class="mobile-nav-link">Explore Events</a>
+        <a href="home.html" class="mobile-nav-link" style="color: var(--color-primary); font-weight: 700;">My Dashboard</a>
+        <a href="index.html#categories" class="mobile-nav-link">Categories</a>
+        <a href="index.html#contact" class="mobile-nav-link">Help Desk</a>
+      </div>
+      <div class="mobile-nav-actions">
+        <a href="events.html" class="btn btn-primary btn-block">Find More Events</a>
+        <button type="button" class="btn btn-outline btn-block" onclick="window.EventEaseStorage.logoutUser(); window.location.href='index.html';">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-page-container">
+    <div class="container">
+      
+      <!-- Welcome Banner -->
+      <section class="dashboard-welcome-banner" aria-label="Welcome Overview">
+        <div>
+          <span class="badge" style="background: rgba(255,255,255,0.2); color: #ffffff; margin-bottom: 8px;">STUDENT DASHBOARD</span>
+          <h1>Welcome back, <span id="dashWelcomeName">Student</span>! 👋</h1>
+          <p>
+            Department: <strong id="dashWelcomeDept">Computer Science &amp; Engineering</strong> • Academic Year 2026–2027
+          </p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="events.html" class="btn btn-outline" style="background: rgba(255,255,255,0.15); color: #ffffff; border-color: rgba(255,255,255,0.3);">
+            <span>Explore Campus Events</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+          <button type="button" class="btn btn-outline" id="btnResetDemoState" style="background: rgba(255,255,255,0.1); color: #ffffff; border-color: rgba(255,255,255,0.2); font-size: 12px;" title="Reset demo registrations to default state">
+            ↺ Reset Demo
+          </button>
+        </div>
+      </section>
+
+      <!-- Dashboard Grid Layout (Desktop 320px + 1fr CSS Grid, Mobile 1-col) -->
+      <div class="dashboard-grid-layout">
+        
+        <!-- Left: Student Profile Card & Quick Info -->
+        <aside class="student-profile-card" aria-label="Student Profile Information">
+          <div class="profile-avatar-wrap">
+            <div class="profile-avatar" id="dashProfileAvatar">AS</div>
+            <h3 id="dashProfileName" style="font-size: var(--text-lg); margin-bottom: 2px;">Aarav Sharma</h3>
+            <span class="badge badge-primary">Verified Student</span>
+          </div>
+
+          <div class="profile-info-list">
+            <div class="profile-info-row">
+              <span class="profile-info-label">Student ID:</span>
+              <span class="profile-info-value" id="dashProfileId">CS2026101</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-info-label">Campus Email:</span>
+              <span class="profile-info-value" id="dashProfileEmail" style="font-size: 12px; word-break: break-all;">student@campus.edu</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-info-label">Mobile:</span>
+              <span class="profile-info-value" id="dashProfilePhone">9876543210</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-info-label">Department:</span>
+              <span class="profile-info-value" id="dashProfileDept" style="text-align: right; max-width: 170px;">CSE</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-info-label">Member Since:</span>
+              <span class="profile-info-value">Oct 2026</span>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Links -->
+          <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 8px;">
+            <a href="events.html" class="btn btn-outline btn-sm btn-block" style="justify-content: flex-start;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span>Search Campus Events</span>
+            </a>
+            <a href="index.html#calculator" class="btn btn-outline btn-sm btn-block" style="justify-content: flex-start;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line></svg>
+              <span>Event Budget Calculator</span>
+            </a>
+            <a href="index.html#contact" class="btn btn-outline btn-sm btn-block" style="justify-content: flex-start;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>Contact Campus Desk</span>
+            </a>
+          </div>
+
+          <!-- LocalStorage Disclaimer Note -->
+          <div style="margin-top: 1.5rem; padding: 12px; background: var(--bg-subtle); border-radius: var(--radius-md); font-size: 11px; color: var(--text-muted); line-height: 1.4;">
+            <strong>🔒 LocalStorage Demo Notice:</strong> Your registrations are stored only within this browser instance and not shared across separate devices.
+          </div>
+        </aside>
+
+        <!-- Right: Statistics, Registered Events, Recommendations -->
+        <div class="dashboard-main-area">
+          
+          <!-- 4 Statistics Cards -->
+          <section class="dash-stats-row" aria-label="Student Registration Statistics">
+            <div class="dash-stat-box">
+              <div class="dash-stat-icon">🎟️</div>
+              <div>
+                <div class="dash-stat-num" id="statTotalRegistered">2</div>
+                <div class="dash-stat-desc">Registered Events</div>
+              </div>
+            </div>
+
+            <div class="dash-stat-box">
+              <div class="dash-stat-icon" style="background-color: var(--color-success-bg); color: var(--color-success);">📅</div>
+              <div>
+                <div class="dash-stat-num" id="statUpcomingCount">2</div>
+                <div class="dash-stat-desc">Upcoming Sessions</div>
+              </div>
+            </div>
+
+            <div class="dash-stat-box">
+              <div class="dash-stat-icon" style="background-color: #fef3c7; color: #d97706;">🎓</div>
+              <div>
+                <div class="dash-stat-num" id="statPastCount">1</div>
+                <div class="dash-stat-desc">Completed Events</div>
+              </div>
+            </div>
+
+            <div class="dash-stat-box">
+              <div class="dash-stat-icon" style="background-color: #f3e8ff; color: #9333ea;">⭐</div>
+              <div>
+                <div class="dash-stat-num" id="statCreditsCount">100 pts</div>
+                <div class="dash-stat-desc">Activity Credits</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- My Registered Events Section -->
+          <section class="registered-events-table-wrap" aria-label="My Registered Campus Events">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-bottom: var(--space-4); border-bottom: 1px solid var(--border-light);">
+              <div>
+                <h2 style="font-size: var(--text-xl);">My Registered Events</h2>
+                <p style="font-size: var(--text-xs); color: var(--text-muted);">
+                  View your digital entry passes, schedule details, or cancel registrations.
+                </p>
+              </div>
+
+              <!-- Search in Registered Events -->
+              <div class="search-input-wrap" style="max-width: 260px; width: 100%;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="text"
+                  id="dashSearchRegistered"
+                  placeholder="Filter registered..."
+                  style="padding-top: 0.5rem; padding-bottom: 0.5rem; font-size: 13px;"
+                  aria-label="Filter registered events"
+                />
+              </div>
+            </div>
+
+            <!-- Dynamic Registered Events Grid -->
+            <div class="registered-cards-grid" id="registeredEventsContainer">
+              <!-- Rendered via dashboard.js -->
+            </div>
+          </section>
+
+          <!-- Recommended Upcoming Events (Quick Register) -->
+          <section class="registered-events-table-wrap" aria-label="Recommended Campus Events">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4);">
+              <div>
+                <h3 style="font-size: var(--text-lg);">Recommended for You</h3>
+                <p style="font-size: var(--text-xs); color: var(--text-muted);">
+                  Handpicked campus workshops and fests you have not yet registered for.
+                </p>
+              </div>
+              <a href="events.html" style="font-size: var(--text-xs); font-weight: 600;">View All (10+) &rarr;</a>
+            </div>
+
+            <div class="events-grid" id="recommendedEventsGrid" style="grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+              <!-- Rendered via dashboard.js -->
+            </div>
+          </section>
+
+          <!-- Event Attendance History / Past Records -->
+          <section class="registered-events-table-wrap" aria-label="Event History">
+            <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-2);">Campus Participation History</h3>
+            <p style="font-size: var(--text-xs); color: var(--text-muted); margin-bottom: var(--space-4);">
+              Verified attendance logs and completed workshops from the previous academic quarter.
+            </p>
+
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm); text-align: left;">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--border-light); color: var(--text-muted); font-size: var(--text-xs);">
+                    <th style="padding: 10px 12px;">Event Title</th>
+                    <th style="padding: 10px 12px;">Date</th>
+                    <th style="padding: 10px 12px;">Category</th>
+                    <th style="padding: 10px 12px;">Attendance Status</th>
+                    <th style="padding: 10px 12px;">Certificate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-light);">
+                    <td style="padding: 12px; font-weight: 600;">Git &amp; Open Source Orientation</td>
+                    <td style="padding: 12px; color: var(--text-secondary);">Oct 18, 2026</td>
+                    <td style="padding: 12px;"><span class="badge badge-technical">Technical</span></td>
+                    <td style="padding: 12px;"><span class="badge badge-sports" style="background-color: var(--color-success-bg); color: var(--color-success);">Attended ✓</span></td>
+                    <td style="padding: 12px;"><button type="button" class="btn btn-outline btn-sm" onclick="alert('Demo Certificate verified for Aarav Sharma (CS2026101)!');">View Certificate</button></td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px; font-weight: 600;">Campus Debate Championship</td>
+                    <td style="padding: 12px; color: var(--text-secondary);">Sep 24, 2026</td>
+                    <td style="padding: 12px;"><span class="badge badge-cultural">Cultural</span></td>
+                    <td style="padding: 12px;"><span class="badge badge-sports" style="background-color: var(--color-success-bg); color: var(--color-success);">Attended ✓</span></td>
+                    <td style="padding: 12px;"><button type="button" class="btn btn-outline btn-sm" onclick="alert('Demo Participation Certificate issued!');">View Certificate</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Digital Ticket Modal Container -->
+  <div id="ticketModal" class="modal-backdrop"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="nav-brand" style="margin-bottom: 1rem;">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <span>Event<strong style="color: var(--color-primary);">Ease</strong></span>
+        </a>
+        <p style="font-size: var(--text-sm); line-height: 1.6; margin-bottom: 1rem;">
+          Discover Events. Register Easily. Make Memories.
+        </p>
+        <span class="badge badge-demo">25CS208 ACADEMIC MICROPROJECT</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Explore Events</a>
+          <a href="home.html">Dashboard</a>
+          <a href="index.html#categories">Categories</a>
+          <a href="index.html#calculator">Budget Calculator</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Campus Support</h4>
+        <div class="footer-links">
+          <a href="index.html#contact">Student Activity Center</a>
+          <a href="index.html#faq">Registration FAQs</a>
+          <a href="index.html#about">About EventEase</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Emergency / Helpline</h4>
+        <p style="font-size: var(--text-sm);">
+          SAC Room 204 • Helpdesk: events@campus.edu<br />
+          Helpline: +91 98765 43210
+        </p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>&copy; 2026–2027 EventEase – 25CS208 Web Technology Microproject.</div>
+      <div>Frontend Demonstration • LocalStorage Client-Side Architecture</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    // Reset Demo State button listener
+    document.addEventListener('DOMContentLoaded', () => {
+      const resetBtn = document.getElementById('btnResetDemoState');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm('Reset demo state to default seed data? (Restores pre-registered demo events)')) {
+            window.EventEaseStorage.resetDemoData();
+            // Re-login default demo student
+            window.EventEaseStorage.loginUser('student@campus.edu', 'EventEase@2026').then(() => {
+              window.location.reload();
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
